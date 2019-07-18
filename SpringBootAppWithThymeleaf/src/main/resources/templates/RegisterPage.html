@@ -6,5 +6,21 @@
 </head>
 <body>
 <h2>Welcome to Register Page</h2>
+<form action="#" method="POST" th:action="@{/product/save}" th:object="${product}">
+<pre>
+NAME:<input type="text" th:field="*{prodName}"/>
+CODE:<input type="text" th:field="*{prodCode}"/>
+COST:<input type="text" th:field="*{prodCost}"/>
+TYPE:<select th:field="*{prodType}">
+     <option value="">select</option>
+     <option value="Grade-A">Grade-A</option>
+     <option value="Grade-B">Grade-B</option>
+     <option value="Grade-C">Grade-C</option>
+     </select>
+DESC:<textarea th:field="*{prodDes}"></textarea>
+     <input type="submit" value="Register">
+</pre>
+</form>
+<span th:text="${message}"></span>
 </body>
 </html>

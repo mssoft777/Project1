@@ -6,13 +6,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
 @Table(name="producttab")
 public class Product {
 
 	@Id
 	@Column(name="id")
-	@GeneratedValue
+	@GeneratedValue(generator="id")
+	@GenericGenerator(name="id", strategy="com.app.gen.IdGenerator")
 	private Integer prodId;
 	@Column(name="name")
 	private String prodName;
@@ -22,8 +25,8 @@ public class Product {
 	private Double prodCost;
 	@Column(name="type")
 	private String prodType;
-	@Column(name="desc")
-	private String prodDesc;
+	@Column(name="data")
+	private String prodDes;
 	
 	public Product() {
 		super();
@@ -32,15 +35,14 @@ public class Product {
 		super();
 		this.prodId = prodId;
 	}
-	public Product(Integer prodId, String prodName, String prodCode, Double prodCost, String prodType,
-			String prodDesc) {
+	public Product(Integer prodId, String prodName, String prodCode, Double prodCost, String prodType, String prodDes) {
 		super();
 		this.prodId = prodId;
 		this.prodName = prodName;
 		this.prodCode = prodCode;
 		this.prodCost = prodCost;
 		this.prodType = prodType;
-		this.prodDesc = prodDesc;
+		this.prodDes = prodDes;
 	}
 	public Integer getProdId() {
 		return prodId;
@@ -72,15 +74,16 @@ public class Product {
 	public void setProdType(String prodType) {
 		this.prodType = prodType;
 	}
-	public String getProdDesc() {
-		return prodDesc;
+	public String getProdDes() {
+		return prodDes;
 	}
-	public void setProdDesc(String prodDesc) {
-		this.prodDesc = prodDesc;
+	public void setProdDes(String prodDes) {
+		this.prodDes = prodDes;
 	}
 	@Override
 	public String toString() {
 		return "Product [prodId=" + prodId + ", prodName=" + prodName + ", prodCode=" + prodCode + ", prodCost="
-				+ prodCost + ", prodType=" + prodType + ", prodDesc=" + prodDesc + "]";
+				+ prodCost + ", prodType=" + prodType + ", prodDes=" + prodDes + "]";
 	}
+	
 }
